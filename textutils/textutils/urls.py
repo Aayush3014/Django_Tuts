@@ -24,9 +24,9 @@ urlpatterns = [
     # path('about',views.about,name = 'about')
 
     path('',views.index ,name = 'index'),
-    path('spaceremove',views.spaceremove,name = "Space Remove"),
-    path('capitalizefirst',views.capitalizefirst,name = "CapitalizeFirst"),
-    path('charcount',views.charcount,name = "Charcount"),
-    path('newlineremove',views.newlineremove,name = "newlineremove"),
-    path('removepunc',views.removepunctuation,name = "removepunctuation")
+    # path('spaceremove',views.spaceremove,name = "Space Remove"),
+    # path('capitalizefirst',views.capitalizefirst,name = "CapitalizeFirst"),
+    # path('charcount',views.charcount,name = "Charcount"),
+    # path('newlineremove',views.newlineremove,name = "newlineremove"),
+    path('analyze',views.analyze,name = "analyze")
 ]

@@ -4,12 +4,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Index Html file</title>
+    <title>TextUtils</title>
   </head>
   <body>
     <h1>Welcome to Text Analyzer. Enter your text below </h1>
-<form action = '/removepunc' method = 'get'>
-    <textarea style="width: 1333px; height: 129px;"></textarea>
+<form action = '/analyze' method = 'get'>
+  
+    <textarea name = 'text' style="width: 1333px; height: 129px;"></textarea>
+    <input type = "checkbox" name = 'removepunc'> Remove Punctuation</input><br>
     <button type = "submit">Analyze Text</button>
+</form>
 </body>
 </html>

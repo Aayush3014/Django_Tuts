@@ -1,0 +1,19 @@
+Textutils Tutorial
+
+create a project in django
+> pyhton -m django startproject <project_name>
+
+run project 
+> python manage.py runserver
+
+then we will make a views.py file for adding functionality of website
+
+then we add and configure urls.py file for adding functionality from views.py file
+
+for passing html file as an template we need to make a folder template inside Textutils folder
+
+and configure settings.py file configure templates list add name of the template folder 
+
+then make a html file and pass it to the function present in views.py file 
+
+lay the pipeline for numerous options in Textutils as many options we need to implement in the website
