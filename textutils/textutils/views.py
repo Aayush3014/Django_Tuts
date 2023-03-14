@@ -17,6 +17,7 @@ def analyze(request):
     fullcaps = request.GET.get('fullcaps','off')
     newlineremover = request.GET.get('newlineremover','off')
     spaceremover = request.GET.get('spaceremover','off')
+    charcount = request.GET.get('charcount','off')
 
     # if removepunc checkbox is on
     if removepunc == "on":
@@ -25,36 +26,52 @@ def analyze(request):
         for char in djtext:
             if char not in punctuations:
                 analyzed = analyzed + char
+        djtext = analyzed
         params = {'purpose': 'Removed Punctuations', 'analyzed_text': analyzed}
-        return render(request, 'analyze.html', params)
+        # return render(request, 'analyze.html', params)
     
     # if fullcaps checkbox is on
-    elif (fullcaps=='on'):
+    if (fullcaps=='on'):
         analyzed = ""
         for char in djtext:
             analyzed = analyzed + char.upper()
         params = {'purpose': 'Changed to Uppercase', 'analyzed_text': analyzed}
-        return render(request, 'analyze.html', params)
+        djtext = analyzed
+        # return render(request, 'analyze.html', params)
     
     # if newlineremover is on
-    elif (newlineremover=='on'):
+    if (newlineremover=='on'):
         analyzed = ""
         for char in djtext:
             if char != '\n':
                 analyzed = analyzed + char
         params = {'purpose': 'New Lines Removed', 'analyzed_text': analyzed}
-        return render(request, 'analyze.html', params)
+        djtext = analyzed
+        # return render(request, 'analyze.html', params)
     
     # If Space remover is on.
-    elif (spaceremover=='on'):
+    if (spaceremover=='on'):
         analyzed = ""
-        for char in djtext:
-            if char!=' ':
+        for index,char in enumerate(djtext):
+            if not(djtext[index]==" " and djtext[index+1]==" "):
                 analyzed = analyzed + char
-        params = {'purpose': 'Spaces Removed', 'analyzed_text': analyzed}
-        return render(request, 'analyze.html', params)
-    else:
-        return HttpResponse('Error')
+        params = {'purpose': 'Extra Spaces Removed', 'analyzed_text': analyzed}
+        djtext = analyzed
+        # return render(request, 'analyze.html', params)
+    
+
+    if (charcount=='on'):
+        total_character = 0
+        for char in djtext:
+            if (char != " " and char != '\n'):
+                total_character+=1
+        analyzed = f"There are total {total_character} characters including Punctuation and Special Characters"
+        params = {'purpose': 'Extra Spaces Removed', 'analyzed_text': analyzed}
+        djtext = analyzed
+        # return render(request, 'analyze.html', params)
+    # else:
+        # return HttpResponse('Error')
+    return render(request, 'analyze.html', params)
 
 
 # def newlineremove(request):
